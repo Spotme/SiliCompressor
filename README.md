@@ -55,13 +55,13 @@ Download
 --------
 #### Gradle
 ```groovy
-implementation 'com.iceteck.silicompressorr:silicompressor:2.2.2'
+implementation 'com.spotme.silicompressorr:silicompressor:2.2.2'
 ```
 
 ##### Maven
 ```xml
 <dependency>
-  <groupId>com.iceteck.silicompressorr</groupId>
+  <groupId>com.spotme.silicompressorrcom.spotme.silicompressorr</groupId>
   <artifactId>silicompressor</artifactId>
   <version>2.2.2</version>
   <type>aar</type>
