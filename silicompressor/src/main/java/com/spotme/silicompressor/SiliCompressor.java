@@ -11,9 +11,10 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.content.FileProvider;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 
 import com.spotme.silicompressor.videocompression.MediaController;
 

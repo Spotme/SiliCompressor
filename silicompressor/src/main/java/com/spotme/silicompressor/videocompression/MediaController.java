@@ -1,12 +1,6 @@
 package com.spotme.silicompressor.videocompression;
 
-/**
- * @Author By Jorge E. Hernandez (@lalongooo) 2015
- * @Co-Author Akah Larry (@larrytech7) 2017
- */
-
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
@@ -26,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-@SuppressLint("NewApi")
 public class MediaController {
 
     public static File cachedFile;
@@ -167,7 +160,6 @@ public void scheduleVideoConvert(String path, File dest) {
         VideoConvertRunnable.runConversion(path, dest);
     }
 
-    @TargetApi(16)
     private long readAndWriteTrack(MediaExtractor extractor, MP4Builder mediaMuxer, MediaCodec.BufferInfo info, long start, long end, File file, boolean isAudio) throws Exception {
         int trackIndex = selectTrack(extractor, isAudio);
         if (trackIndex >= 0) {
@@ -224,7 +216,6 @@ public void scheduleVideoConvert(String path, File dest) {
         return -1;
     }
 
-    @TargetApi(16)
     private int selectTrack(MediaExtractor extractor, boolean audio) {
         int numTracks = extractor.getTrackCount();
         for (int i = 0; i < numTracks; i++) {
@@ -264,7 +255,6 @@ public void scheduleVideoConvert(String path, File dest) {
      * @param outBitrate the target bitrate of the converted video, 0 is default
      * @return
      */
-    @TargetApi(16)
     public boolean  convertVideo(final String sourcePath, File destDir, int outWidth, int outHeight, int outBitrate) {
         this.path=sourcePath;
 

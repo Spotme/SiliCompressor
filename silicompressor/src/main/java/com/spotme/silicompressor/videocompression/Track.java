@@ -1,14 +1,5 @@
-/*
- * This is the source code of Telegram for Android v. 1.7.x.
- * It is licensed under GNU GPL v. 2 or later.
- * You should have received a copy of the license in this archive (see LICENSE).
- *
- * Copyright Nikolai Kudashov, 2013-2014.
- */
-
 package com.spotme.silicompressor.videocompression;
 
-import android.annotation.TargetApi;
 import android.media.MediaCodec;
 import android.media.MediaFormat;
 
@@ -32,9 +23,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-;
-
-@TargetApi(16)
 public class Track {
     private long trackId = 0;
     private ArrayList<Sample> samples = new ArrayList<Sample>();
@@ -82,7 +70,7 @@ public class Track {
             headerBox = new VideoMediaHeaderBox();
             sampleDescriptionBox = new SampleDescriptionBox();
             String mime = format.getString(MediaFormat.KEY_MIME);
-            if (mime.equals("video/avc")) {
+            if ("video/avc".equals(mime)) {
                 VisualSampleEntry visualSampleEntry = new VisualSampleEntry("avc1");
                 visualSampleEntry.setDataReferenceIndex(1);
                 visualSampleEntry.setDepth(24);
