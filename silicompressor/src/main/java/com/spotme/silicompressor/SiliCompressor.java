@@ -29,9 +29,9 @@ public class SiliCompressor {
      *
      * @param videoFilePath  source path for the video file
      * @param destinationDir destination directory where converted file should be saved
-     * @return The Path of the compressed video file
+     * @return The compressed video file
      */
-    public static String compressVideo(String videoFilePath, String destinationDir, @Nullable String name) throws URISyntaxException {
+    public static File compressVideo(String videoFilePath, String destinationDir, @Nullable String name) throws URISyntaxException {
         return compressVideo(videoFilePath, destinationDir, name, 0, 0, 0);
     }
 
@@ -46,9 +46,9 @@ public class SiliCompressor {
      * @param outWidth       the target width of the compressed video or 0 to use default width
      * @param outHeight      the target height of the compressed video or 0 to use default height
      * @param bitrate        the target bitrate of the compressed video or 0 to user default bitrate
-     * @return The Path of the compressed video file
+     * @return The compressed video file
      */
-    public static String compressVideo(String videoFilePath, String destinationDir, @Nullable String name, int outWidth, int outHeight, int bitrate) throws URISyntaxException {
+    public static File compressVideo(String videoFilePath, String destinationDir, @Nullable String name, int outWidth, int outHeight, int bitrate) throws URISyntaxException {
         boolean converted = MediaController.getInstance().convertVideo(null, null, videoFilePath, new File(destinationDir), name, outWidth, outHeight, bitrate);
         if (converted) {
             Timber.d("Video Conversion Complete");
@@ -56,7 +56,7 @@ public class SiliCompressor {
             Timber.d("Video conversion in progress");
         }
 
-        return MediaController.cachedFile.getPath();
+        return MediaController.cachedFile;
     }
 
     /**
@@ -67,9 +67,9 @@ public class SiliCompressor {
      *
      * @param uri            uri for the video file
      * @param destinationDir destination directory where converted file should be saved
-     * @return The Path of the compressed video file
+     * @return The compressed video file
      */
-    public static String compressVideo(Context context, Uri uri, String destinationDir, @Nullable String name) throws URISyntaxException {
+    public static File compressVideo(Context context, Uri uri, String destinationDir, @Nullable String name) throws URISyntaxException {
         return compressVideo(context, uri, destinationDir, name, 0, 0, 0);
     }
 
@@ -84,9 +84,9 @@ public class SiliCompressor {
      * @param outWidth       the target width of the compressed video or 0 to use default width
      * @param outHeight      the target height of the compressed video or 0 to use default height
      * @param bitrate        the target bitrate of the compressed video or 0 to user default bitrate
-     * @return The Path of the compressed video file
+     * @return The compressed video file
      */
-    public static String compressVideo(Context context, Uri uri, String destinationDir, @Nullable String name, int outWidth, int outHeight, int bitrate) throws URISyntaxException {
+    public static File compressVideo(Context context, Uri uri, String destinationDir, @Nullable String name, int outWidth, int outHeight, int bitrate) throws URISyntaxException {
         boolean converted = MediaController.getInstance().convertVideo(context, uri, null, new File(destinationDir), name, outWidth, outHeight, bitrate);
         if (converted) {
             Timber.d("Video Conversion Complete");
@@ -94,6 +94,6 @@ public class SiliCompressor {
             Timber.d("Video conversion in progress");
         }
 
-        return MediaController.cachedFile.getPath();
+        return MediaController.cachedFile;
     }
 }
