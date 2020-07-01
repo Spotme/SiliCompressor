@@ -124,8 +124,8 @@ public class MediaController {
      * @param destDir    the destination directory where compressed video is eventually saved
      * @return
      */
-    public boolean convertVideo(@Nullable final Context context, @Nullable final Uri uri, @Nullable final String sourcePath, File destDir) {
-        return convertVideo(context, uri, sourcePath, destDir, 0, 0, 0);
+    public boolean convertVideo(@Nullable final Context context, @Nullable final Uri uri, @Nullable final String sourcePath, File destDir, @Nullable String name) {
+        return convertVideo(context, uri, sourcePath, destDir, name, 0, 0, 0);
     }
 
     /**
@@ -138,7 +138,7 @@ public class MediaController {
      * @param outBitrate the target bitrate of the converted video, 0 is default
      * @return
      */
-    public boolean convertVideo(@Nullable final Context context, @Nullable final Uri uri, @Nullable final String sourcePath, File destDir, int outWidth, int outHeight, int outBitrate) {
+    public boolean convertVideo(@Nullable final Context context, @Nullable final Uri uri, @Nullable final String sourcePath, File destDir, @Nullable String name, int outWidth, int outHeight, int outBitrate) {
         if (context == null && uri == null && sourcePath == null) {
             Timber.e("You need to provide an inputFile or context and uri");
             return false;
@@ -165,8 +165,9 @@ public class MediaController {
         int originalHeight = Integer.parseInt(height);
 
         int bitrate = outBitrate > 0 ? outBitrate : DEFAULT_VIDEO_BITRATE;
-        File cacheFile = new File(destDir,
-                "VIDEO_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date()) + ".mp4"
+        File cacheFile = new File(
+                destDir,
+                name != null ? name : "VIDEO_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date()) + ".mp4"
         );
 
         if (rotationValue == 90) {
