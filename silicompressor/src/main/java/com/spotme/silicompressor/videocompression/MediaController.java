@@ -169,13 +169,11 @@ public class MediaController {
                 destDir,
                 name != null ? name : "VIDEO_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date()) + ".mp4"
         );
-        if (!cacheFile.exists()) {
-            try {
-                cacheFile.mkdirs();
-                cacheFile.createNewFile();
-            } catch (Exception e) {
-                Timber.e(e);
-            }
+        try {
+            destDir.mkdirs();
+            cacheFile.createNewFile();
+        } catch (Exception e) {
+            Timber.e(e);
         }
 
         if (rotationValue == 90) {
