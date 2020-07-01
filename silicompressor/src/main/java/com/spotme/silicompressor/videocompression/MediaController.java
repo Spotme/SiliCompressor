@@ -11,7 +11,6 @@ import android.net.Uri;
 import androidx.annotation.Nullable;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -170,10 +169,13 @@ public class MediaController {
                 destDir,
                 name != null ? name : "VIDEO_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date()) + ".mp4"
         );
-        try {
-            cacheFile.createNewFile();
-        } catch (Exception e) {
-            Timber.e(e);
+        if (!cacheFile.exists()) {
+            try {
+                cacheFile.mkdirs();
+                cacheFile.createNewFile();
+            } catch (Exception e) {
+                Timber.e(e);
+            }
         }
 
         if (rotationValue == 90) {
