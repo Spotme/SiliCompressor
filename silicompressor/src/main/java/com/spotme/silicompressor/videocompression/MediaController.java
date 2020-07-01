@@ -25,7 +25,7 @@ public class MediaController {
     //Default values
     private final static int DEFAULT_VIDEO_WIDTH = 640;
     private final static int DEFAULT_VIDEO_HEIGHT = 360;
-    private final static int DEFAULT_VIDEO_BITRATE = 450000;
+    private final static int DEFAULT_VIDEO_BITRATE = 650000;
     public static File cachedFile;
     private static volatile MediaController Instance = null;
 
