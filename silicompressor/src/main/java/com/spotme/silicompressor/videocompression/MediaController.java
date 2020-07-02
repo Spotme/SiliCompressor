@@ -365,6 +365,8 @@ public class MediaController {
                                         } else if (decoderStatus == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
                                             MediaFormat newFormat = decoder.getOutputFormat();
                                             Timber.d("newFormat = %s", newFormat);
+                                        }  else if (decoderStatus == MediaCodec.INFO_OUTPUT_BUFFERS_CHANGED) {
+                                            Timber.d("Ignore MediaCodec.INFO_OUTPUT_BUFFERS_CHANGED");
                                         } else if (decoderStatus < 0) {
                                             throw new RuntimeException("unexpected result from decoder.dequeueOutputBuffer: " + decoderStatus);
                                         } else {
